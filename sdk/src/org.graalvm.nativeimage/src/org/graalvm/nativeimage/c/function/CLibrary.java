@@ -84,16 +84,37 @@ public @interface CLibrary {
      */
     String[] dependsOn() default {};
 
+    /**
+     * @since 21.0.0
+     */
     interface RequireStaticSupplier extends BooleanSupplier {
 
+        /**
+         * @since 21.0.0
+         */
         final class FalseSupplier implements RequireStaticSupplier {
+            private FalseSupplier() {
+            }
+
+            /**
+             * @since 21.0.0
+             */
             @Override
             public boolean getAsBoolean() {
                 return false;
             }
         }
 
+        /**
+         * @since 21.0.0
+         */
         final class TrueSupplier implements RequireStaticSupplier {
+            private TrueSupplier() {
+            }
+
+            /**
+             * @since 21.0.0
+             */
             @Override
             public boolean getAsBoolean() {
                 return true;

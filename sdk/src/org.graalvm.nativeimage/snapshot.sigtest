@@ -500,14 +500,12 @@ intf java.util.function.BooleanSupplier
 
 CLSS public final static org.graalvm.nativeimage.c.function.CLibrary$RequireStaticSupplier$FalseSupplier
  outer org.graalvm.nativeimage.c.function.CLibrary$RequireStaticSupplier
-cons public init()
 intf org.graalvm.nativeimage.c.function.CLibrary$RequireStaticSupplier
 meth public boolean getAsBoolean()
 supr java.lang.Object
 
 CLSS public final static org.graalvm.nativeimage.c.function.CLibrary$RequireStaticSupplier$TrueSupplier
  outer org.graalvm.nativeimage.c.function.CLibrary$RequireStaticSupplier
-cons public init()
 intf org.graalvm.nativeimage.c.function.CLibrary$RequireStaticSupplier
 meth public boolean getAsBoolean()
 supr java.lang.Object
