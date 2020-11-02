@@ -114,6 +114,10 @@ CLSS public abstract interface !annotation java.lang.annotation.Target
 intf java.lang.annotation.Annotation
 meth public abstract java.lang.annotation.ElementType[] value()
 
+CLSS public abstract interface java.util.function.BooleanSupplier
+ anno 0 java.lang.FunctionalInterface()
+meth public abstract boolean getAsBoolean()
+
 CLSS public final org.graalvm.nativeimage.CurrentIsolate
 meth public static org.graalvm.nativeimage.Isolate getIsolate()
 meth public static org.graalvm.nativeimage.IsolateThread getCurrentThread()
@@ -481,10 +485,32 @@ intf org.graalvm.nativeimage.c.function.RelocatedPointer
 CLSS public abstract interface !annotation org.graalvm.nativeimage.c.function.CLibrary
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD])
+innr public abstract interface static RequireStaticSupplier
 intf java.lang.annotation.Annotation
 meth public abstract !hasdefault boolean requireStatic()
+meth public abstract !hasdefault java.lang.Class<? extends org.graalvm.nativeimage.c.function.CLibrary$RequireStaticSupplier> requireStaticSupplier()
 meth public abstract !hasdefault java.lang.String[] dependsOn()
 meth public abstract java.lang.String value()
+
+CLSS public abstract interface static org.graalvm.nativeimage.c.function.CLibrary$RequireStaticSupplier
+ outer org.graalvm.nativeimage.c.function.CLibrary
+innr public final static FalseSupplier
+innr public final static TrueSupplier
+intf java.util.function.BooleanSupplier
+
+CLSS public final static org.graalvm.nativeimage.c.function.CLibrary$RequireStaticSupplier$FalseSupplier
+ outer org.graalvm.nativeimage.c.function.CLibrary$RequireStaticSupplier
+cons public init()
+intf org.graalvm.nativeimage.c.function.CLibrary$RequireStaticSupplier
+meth public boolean getAsBoolean()
+supr java.lang.Object
+
+CLSS public final static org.graalvm.nativeimage.c.function.CLibrary$RequireStaticSupplier$TrueSupplier
+ outer org.graalvm.nativeimage.c.function.CLibrary$RequireStaticSupplier
+cons public init()
+intf org.graalvm.nativeimage.c.function.CLibrary$RequireStaticSupplier
+meth public boolean getAsBoolean()
+supr java.lang.Object
 
 CLSS public abstract interface !annotation org.graalvm.nativeimage.c.function.CMacroInfo
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=SOURCE)
