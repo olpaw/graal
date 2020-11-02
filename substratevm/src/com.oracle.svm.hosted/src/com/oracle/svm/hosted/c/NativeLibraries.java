@@ -599,7 +599,17 @@ public final class NativeLibraries {
             return false;
         }
         for (CLibrary lib : annotated) {
-            if (lib.requireStatic()) {
+            Class<? extends CLibrary.RequireStaticSupplier> requireStaticSupplier = lib.requireStaticSupplier();
+
+            CLibrary.RequireStaticSupplier supplier;
+            try {
+                supplier = ReflectionUtil.newInstance(requireStaticSupplier);
+            } catch (ReflectionUtilError ex) {
+                throw UserError.abort(ex.getCause(), "Error instantiating RequireStaticSupplier class %s. Ensure the class is not abstract and has a no-argument constructor.",
+                                requireStaticSupplier.getTypeName());
+            }
+
+            if (lib.requireStatic() || supplier.getAsBoolean()) {
                 addStaticNonJniLibrary(lib.value(), lib.dependsOn());
             } else {
                 addDynamicNonJniLibrary(lib.value());

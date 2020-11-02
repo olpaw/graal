@@ -55,6 +55,9 @@ import com.oracle.svm.core.util.UserError;
 
 public class SubstrateOptions {
 
+    @Option(help = "Dynamically link native image to system libffi instead of statically linking to the static libffi shipped with GraalVM")//
+    public static final HostedOptionKey<Boolean> SystemLibFFI = new HostedOptionKey<>(false);
+
     @Option(help = "Class containing the default entry point method. Optional if --shared is used.", type = OptionType.User)//
     public static final HostedOptionKey<String> Class = new HostedOptionKey<>("");
 

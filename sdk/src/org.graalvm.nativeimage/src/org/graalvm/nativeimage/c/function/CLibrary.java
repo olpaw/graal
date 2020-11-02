@@ -44,6 +44,7 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.util.function.BooleanSupplier;
 
 /**
  * Denotes an external library that needs to be linked in. The annotation can be placed on any
@@ -70,9 +71,33 @@ public @interface CLibrary {
     boolean requireStatic() default false;
 
     /**
+     * Specifies if static linking is required via a RequireStaticSupplier class.
+     *
+     * @since 21.0.0
+     */
+    Class<? extends RequireStaticSupplier> requireStaticSupplier() default RequireStaticSupplier.FalseSupplier.class;
+
+    /**
      * Specifies the name of the libraries this library depends on.
      * 
      * @since 20.1.0
      */
     String[] dependsOn() default {};
+
+    interface RequireStaticSupplier extends BooleanSupplier {
+
+        final class FalseSupplier implements RequireStaticSupplier {
+            @Override
+            public boolean getAsBoolean() {
+                return false;
+            }
+        }
+
+        final class TrueSupplier implements RequireStaticSupplier {
+            @Override
+            public boolean getAsBoolean() {
+                return true;
+            }
+        }
+    }
 }
