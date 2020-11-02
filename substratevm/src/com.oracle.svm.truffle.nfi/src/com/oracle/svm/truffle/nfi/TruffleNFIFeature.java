@@ -28,10 +28,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.BooleanSupplier;
 
-import com.oracle.svm.core.SubstrateOptions;
-import org.graalvm.nativeimage.c.function.CLibrary;
-import org.graalvm.nativeimage.hosted.Feature;
 import org.graalvm.nativeimage.ImageSingletons;
+import org.graalvm.nativeimage.hosted.Feature;
 
 import com.oracle.svm.truffle.TruffleFeature;
 import com.oracle.truffle.nfi.NFILanguage;
